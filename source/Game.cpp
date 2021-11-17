@@ -207,7 +207,7 @@ void Game::playPattern()
     // Declares some function specific variables.
     static int frameCounter = -1;
     static char currentPatternPiece = '\0';
-    static int patternCounter = 0;
+    static int currentPatternCounter = 0;
 
     // If the frame counter is empty, reset it.
     if (frameCounter < 0) frameCounter = 50;
@@ -215,7 +215,7 @@ void Game::playPattern()
     else if (frameCounter == 0)
     {
         // ...get the current pattern piece.
-        currentPatternPiece = currentPattern.at(patternCounter);
+        currentPatternPiece = currentPattern.at(currentPatternCounter);
 
         // Depending on what it is activate the correct creature.
         switch (currentPatternPiece)
@@ -227,15 +227,15 @@ void Game::playPattern()
         }
 
         // Iterate the counter so it'll play the next piece.
-        patternCounter++;
+        currentPatternCounter++;
 
         // If the whole pattern has been read...
-        if (static_cast <unsigned int> (patternCounter) == currentPattern.length())
+        if (static_cast <unsigned int> (currentPatternCounter) == currentPattern.length())
         {
             // ...reset the function's values.
             frameCounter = -1;
             currentPatternPiece = '\0';
-            patternCounter = 0;
+            currentPatternCounter = 0;
 
             // Sets the game's new state.
             state = State::IN_LEVEL;
@@ -305,7 +305,7 @@ void Game::saveHighscore()
     std::istringstream readData;
     std::ostringstream writeData;
     int highscore[5];
-    int newHighscore = currentPattern.length() - 1;
+    int newHighscore = static_cast <int> (currentPattern.length()) - 1;
     int highscorePosition = 999;
 
     // Reads the highscores and stores them.
