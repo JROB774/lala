@@ -48,7 +48,7 @@ void Menu::step()
     if (state == State::HIGHSCORES)
     {
         // ...create the stream for reading the highscores file.
-        std::ifstream readFile("save.dat");
+        std::ifstream readFile(FILESYS_NAME("save.dat"));
         // The storage for the raw string of data from the file.
         std::string data = "0 0 0 0 0 ";
         // Stores a piece of the raw data temporarily.
@@ -115,7 +115,7 @@ void Menu::terminate()
 void Menu::resetHighscores()
 {
     // Opens the highscores file for writing.
-    std::ofstream writeFile("save.dat", std::ios::trunc);
+    std::ofstream writeFile(FILESYS_NAME("save.dat"), std::ios::trunc);
 
     // If the file is opened successfully...
     if (writeFile.is_open())
@@ -123,5 +123,7 @@ void Menu::resetHighscores()
         // Resets the file's information and closes the file.
         writeFile << "0 0 0 0 0 \n\nDO NOT EDIT OR DELETE THIS FILE";
         writeFile.close();
+
+        FILESYS_SYNC();
     }
 }

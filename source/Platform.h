@@ -3,7 +3,7 @@
 
 // Used to prefix the root directory for web platforms.
 #ifdef PLATFORM_WEB
-#define FILESYS_NAME(name) std::string("/RUNNER/") + name
+#define FILESYS_NAME(name) std::string("/LALA/") + name
 #else
 #define FILESYS_NAME(name) name
 #endif

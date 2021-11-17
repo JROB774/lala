@@ -311,7 +311,7 @@ void Game::saveHighscore()
     int highscorePosition = 999;
 
     // Reads the highscores and stores them.
-    std::ifstream readFile("save.dat");
+    std::ifstream readFile(FILESYS_NAME("save.dat"));
     if (readFile.is_open())
     {
         std::getline(readFile, rawData);
@@ -340,11 +340,13 @@ void Game::saveHighscore()
         writeData << highscore[0] << " " << highscore[1] << " " << highscore[2] << " " << highscore[3] << " " << highscore[4] << " ";
 
         // Writes the new highscores to the highscores file.
-        std::ofstream writeFile("save.dat", std::ios::trunc);
+        std::ofstream writeFile(FILESYS_NAME("save.dat"), std::ios::trunc);
         if (writeFile.is_open())
         {
             writeFile << writeData.str() << "\n\nDO NOT EDIT OR DELETE THIS FILE";
             writeFile.close();
+
+            FILESYS_SYNC();
         }
         else Error::log("Could not open the highscores file for writing!", Error::Type::STD);
     }
