@@ -10,7 +10,11 @@ Menu::State Menu::state = Menu::State::MENU;
 void Menu::initialise()
 {
     // Loads and creates the menu's images.
+    #ifdef PLATFORM_WEB
+    menu.create("MenuWeb");
+    #else
     menu.create("Menu");
+    #endif
     highscores.create("Highscores");
 }
 

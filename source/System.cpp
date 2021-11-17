@@ -56,7 +56,9 @@ void System::handle()
         switch (event.key.keysym.sym)
         {
             // ...check to see if the "Esc" key was pressed, if so then the system's state is set to inactive.
+            #ifndef PLATFORM_WEB
             case(SDLK_ESCAPE) : state = State::INACTIVE; break;
+            #endif
             // ...check to see if the "M" key was pressed, if so then whether sound should be muted or not is toggled.
             case(SDLK_m) : soundMuted = !soundMuted; break;
         }

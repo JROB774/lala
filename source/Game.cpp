@@ -28,7 +28,11 @@ void Game::initialise()
     // Loads and creates the game's images.
     background.create("Background");
     planet.create("Planet");
+    #ifdef PLATFORM_WEB
+    gameOver.create("GameOverWeb");
+    #else
     gameOver.create("GameOver");
+    #endif
 
     // Loads and creates the game's scrolling backgroud.
     clouds.create("Clouds", 4);
