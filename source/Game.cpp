@@ -303,26 +303,22 @@ void Game::playGame()
 void Game::saveHighscore()
 {
     // Declares some temporary variables for use.
-    std::ifstream readFile("Highscores.dat");
-    std::ofstream writeFile;
     std::string rawData = "\0";
     std::istringstream readData;
     std::ostringstream writeData;
-    int highscore[5];
+    int highscore[5] = {}; // Default to all highscores being zero.
     int newHighscore = static_cast <int> (currentPattern.length()) - 1;
     int highscorePosition = 999;
 
     // Reads the highscores and stores them.
+    std::ifstream readFile("save.dat");
     if (readFile.is_open())
     {
         std::getline(readFile, rawData);
         readFile.close();
+        readData.str(rawData);
+        readData >> highscore[0] >> highscore[1] >> highscore[2] >> highscore[3] >> highscore[4];
     }
-    else Error::log("Could not open the highscores file for reading!", Error::Type::STD);
-
-    // Stores the raw data in a stream and extracts the individual highscores.
-    readData.str(rawData);
-    readData >> highscore[0] >> highscore[1] >> highscore[2] >> highscore[3] >> highscore[4];
 
     // Finds out where the new highscore should be placed if anywhere.
     for (int i = 4; i >= 0; i--)
@@ -337,9 +333,6 @@ void Game::saveHighscore()
         // ...move all the scores down one to make room for the new highscore.
         for (int i = 4; i >= highscorePosition; i--) highscore[i] = highscore[i - 1];
 
-        // ...move all the scores down one to make room for the new highscore.
-        // for (int i = 4; i > highscorePosition + 1; i--) highscore[i] = highscore[i - 1];
-
         // Insert thew new highscore.
         highscore[highscorePosition] = newHighscore;
 
@@ -347,8 +340,7 @@ void Game::saveHighscore()
         writeData << highscore[0] << " " << highscore[1] << " " << highscore[2] << " " << highscore[3] << " " << highscore[4] << " ";
 
         // Writes the new highscores to the highscores file.
-        writeFile.open("Highscores.dat", std::ios::trunc);
-
+        std::ofstream writeFile("save.dat", std::ios::trunc);
         if (writeFile.is_open())
         {
             writeFile << writeData.str() << "\n\nDO NOT EDIT OR DELETE THIS FILE";

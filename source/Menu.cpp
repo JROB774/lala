@@ -48,9 +48,9 @@ void Menu::step()
     if (state == State::HIGHSCORES)
     {
         // ...create the stream for reading the highscores file.
-        std::ifstream readFile("Highscores.dat");
+        std::ifstream readFile("save.dat");
         // The storage for the raw string of data from the file.
-        std::string data = "\0";
+        std::string data = "0 0 0 0 0 ";
         // Stores a piece of the raw data temporarily.
         std::string dataPiece = "\0";
         // A counter that determines how many scores have been read.
@@ -66,8 +66,6 @@ void Menu::step()
             std::getline(readFile, data);
             readFile.close();
         }
-        // Otherwise send an error and exit the application.
-        else Error::log("Could not open the highscores file for reading!", Error::Type::STD);
 
         // Loop until the entire string of data has been read.
         for (unsigned int i = 0; i < data.length(); i++)
@@ -117,7 +115,7 @@ void Menu::terminate()
 void Menu::resetHighscores()
 {
     // Opens the highscores file for writing.
-    std::ofstream writeFile("Highscores.dat", std::ios::trunc);
+    std::ofstream writeFile("save.dat", std::ios::trunc);
 
     // If the file is opened successfully...
     if (writeFile.is_open())
@@ -126,6 +124,4 @@ void Menu::resetHighscores()
         writeFile << "0 0 0 0 0 \n\nDO NOT EDIT OR DELETE THIS FILE";
         writeFile.close();
     }
-    // Otherwise send an error and exit the application.
-    else Error::log("Could not open the highscores file for writing!", Error::Type::STD);
 }
