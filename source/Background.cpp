@@ -1,5 +1,3 @@
-#include "Background.h"
-
 void Background::create(const std::string arg_file, const int arg_speed)
 {
 	// Sets the speed and offset of the background.
@@ -7,7 +5,7 @@ void Background::create(const std::string arg_file, const int arg_speed)
 	offset = 0;
 
 	// Loads and creates the raw background image.
-	image.create(arg_file); 
+	image.create(arg_file);
 }
 
 void Background::render()

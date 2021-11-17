@@ -1,10 +1,6 @@
 #ifndef INCLUDE_CREATURE
 #define INCLUDE_CREATURE
 
-#include "Image.h"
-#include "Animation.h"
-#include "Sound.h"
-
 // The creatures found on the planet used in the game. They are to be interacted
 // with for gameplay purposes.
 

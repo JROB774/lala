@@ -1,9 +1,6 @@
 #ifndef INCLUDE_SPAWNER
 #define INCLUDE_SPAWNER
 
-#include <vector>
-#include "Cloud.h"
-
 // Spawns and manages clouds.
 
 class Spawner

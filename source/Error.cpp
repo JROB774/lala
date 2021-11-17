@@ -1,5 +1,3 @@
-#include "Error.h"
-
 void Error::log(const std::string arg_message, const Type arg_type)
 {
 	// Creates a file stream for appending data.
@@ -13,7 +11,6 @@ void Error::log(const std::string arg_message, const Type arg_type)
 		{
 			case(Type::STD) : file << "STD: " << arg_message << "\n"; break;
 			case(Type::SDL) : file << "SDL: " << arg_message << "(" << SDL_GetError() << ")\n"; break;
-			case(Type::IMG) : file << "IMG: " << arg_message << "(" << IMG_GetError() << ")\n"; break;
 			case(Type::MIX) : file << "MIX: " << arg_message << "(" << Mix_GetError() << ")\n"; break;
 		}
 

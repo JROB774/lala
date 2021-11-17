@@ -1,5 +1,3 @@
-#include "Font.h"
-
 // The font image file.
 Image Font::image;
 // The dimensions of each character.

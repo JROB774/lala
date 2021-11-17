@@ -1,5 +1,3 @@
-#include "Creature.h"
-
 // The dimensions of all creature's sprites.
 const int Creature::SPRITE_WIDTH = 104, Creature::SPRITE_HEIGHT = 104;
 // The center point of all sprites.

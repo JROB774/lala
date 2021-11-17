@@ -1,8 +1,6 @@
 #ifndef INCLUDE_ANIMATION
 #define INCLUDE_ANIMATION
 
-#include "System.h"
-
 // Stores and wraps all the information for a specific animation to be played.
 // Handles all the inner workings of an animation easily so less work needs to be done.
 

@@ -1,10 +1,6 @@
 #ifndef INCLUDE_MENU
 #define INCLUDE_MENU
 
-#include <sstream>
-#include <fstream>
-#include "Font.h"
-
 // The class that stores the menus and allows for navigation through them.
 
 class Menu

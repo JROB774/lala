@@ -1,5 +1,3 @@
-#include "Spawner.h"
-
 // The range of time in which a cloud will take to spawn.
 const int Spawner::SPAWN_MAX = 1, Spawner::SPAWN_MIN = 1;
 

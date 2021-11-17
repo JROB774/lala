@@ -1,8 +1,6 @@
 #ifndef INCLUDE_TIMER
 #define INCLUDE_TIMER
 
-#include <SDL.h>
-
 // A class that stores a timer that counts in ticks, it is mainly used for system based
 // calculations such as the FPS but it can have other uses.
 
@@ -28,4 +26,4 @@ class Timer
 		Uint32 startTicks, pauseTicks;
 };
 
-#endif
+#endif // INCLUDE_TIMER

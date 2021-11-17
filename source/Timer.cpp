@@ -1,5 +1,3 @@
-#include "Timer.h"
-
 Timer::Timer()
 {
 	// Sets default values to everything.

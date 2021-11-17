@@ -1,5 +1,3 @@
-#include "Sound.h"
-
 Sound::Sound(){ chunk = nullptr; }
 
 void Sound::create(const std::string arg_file)

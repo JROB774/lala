@@ -1,5 +1,3 @@
-#include "Cloud.h"
-
 // The sprite dimensions.
 const int Cloud::SPRITE_WIDTH = 152, Cloud::SPRITE_HEIGHT = 120;
 // The velocity range of the clouds.
@@ -64,7 +62,7 @@ void Cloud::terminate()
 {
 	// Destroys the cloud's image.
 	image.destroy();
-	
+
 	// Destroys the cloud's sprites.
 	large.destroy();
 	medium.destroy();

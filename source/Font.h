@@ -1,8 +1,6 @@
 #ifndef INCLUDE_FONT
 #define INCLUDE_FONT
 
-#include "Image.h"
-
 // The font that can be used to type up and visually represent ASCII characters
 // to the screen.
 

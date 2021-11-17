@@ -1,5 +1,3 @@
-#include "Image.h"
-
 Image::Image()
 {
 	// Sets default values to everything.
@@ -12,24 +10,32 @@ void Image::create(const std::string arg_file)
 	// Destroys the previous image, if there was one.
 	destroy();
 
-	// Creates the path that the image can be found in and declares a temporary surface.
+	// Loads the raw image data from disk.
 	std::string directory = System::getImageDirectory() + arg_file + ".image";
-	SDL_Surface* surface = nullptr;
+    constexpr int BPP = 4; // We force the image to be in 32-bit RGBA format!
+    int w,h,bpp;
+    unsigned char* data = stbi_load(directory.c_str(), &w,&h,&bpp, BPP);
+    if (data == nullptr) { Error::log("Could not load IMAGE file from disk!", Error::Type::STD); }
 
-	// Loads the image into the surface.
-	surface = IMG_Load(directory.c_str());
-	if (surface == nullptr) Error::log("Could not create a surface from an IMAGE file!", Error::Type::IMG);
+	// Loads the raw image data into a surface.
+    int pitch = w*BPP;
+    SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormatFrom((void*)data, w,h,BPP*8,pitch, SDL_PIXELFORMAT_RGBA32);
+	if (surface == nullptr) Error::log("Could not create a surface from an IMAGE file!", Error::Type::SDL);
 
 	// Creates a texture using the previously loaded surface.
 	texture = SDL_CreateTextureFromSurface(System::getRenderer(), surface);
 	if (texture == nullptr) Error::log("Could not create a texture from a surface!", Error::Type::SDL);
 
 	// The dimensions of the image are set.
-	width = surface->w, height = surface->h;
+	width = w, height = h;
 
 	// The temporary surface is freed.
 	SDL_FreeSurface(surface);
 	surface = nullptr;
+
+	// The raw image data is freed.
+	stbi_image_free(data);
+	data = nullptr;
 }
 
 void Image::render(const int arg_x, const int arg_y, const double arg_angle, const SDL_Point* arg_center, const SDL_RendererFlip arg_flip, SDL_Rect* arg_source) const

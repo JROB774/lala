@@ -1,8 +1,6 @@
 #ifndef INCLUDE_BACKGROUND
 #define INCLUDE_BACKGROUND
 
-#include "Image.h"
-
 // A background object that scrolls from right to left.
 
 class Background

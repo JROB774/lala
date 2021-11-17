@@ -1,13 +1,6 @@
 #ifndef INCLUDE_GAME
 #define INCLUDE_GAME
 
-#include <sstream>
-#include <fstream>
-#include "Font.h"
-#include "Creature.h"
-#include "Background.h"
-#include "Menu.h"
-
 // Stores the main systems and functions of the game itself.
 
 class Game

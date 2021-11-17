@@ -1,7 +1,3 @@
-#include "System.h"
-
-// The directories for the application's resources.
-const std::string System::IMAGE_DIRECTORY = "Resources\\Images\\", System::SOUND_DIRECTORY = "Resources\\Sounds\\";
 // The title of the application window.
 const std::string System::WINDOW_TITLE = "La La";
 // The dimensions of the application window.
@@ -34,7 +30,6 @@ void System::initialise()
 	{
 		// ...if it is not then the main systems are initialised.
 		if (SDL_Init(SDL_INIT_EVERYTHING) != 0) Error::log("Could not initialise SDL!", Error::Type::SDL);
-		if (!IMG_Init(IMG_INIT_PNG)) Error::log("Could not initialise IMG!", Error::Type::IMG);
 		if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0) Error::log("Could not initialise MIX!", Error::Type::MIX);
 
 		// Creates the application window.
@@ -44,29 +39,10 @@ void System::initialise()
 		// Creates the application window's renderer.
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		if (renderer == nullptr) Error::log("Could not create the game application renderer!", Error::Type::SDL);
-
-		// Loads the window's icon.
-		// SDL_RWops* rawIcon = SDL_RWFromFile("Resources\\Icon.ico", "rb");
-		// if (rawIcon == nullptr){ Error::log("Could not load the window's icon!", Error::Type::SDL); }
-        // Creates the window's icon.
-        // SDL_Surface* finalIcon = IMG_LoadICO_RW(rawIcon);
-        SDL_Surface* finalIcon = IMG_Load("Resources\\Icon.png");
-        if (finalIcon == nullptr){ Error::log("Could not create the window's icon!", Error::Type::IMG); }
-        // Sets the window's icon.
-        SDL_SetWindowIcon(window, finalIcon);
-        // Cleans up after use.
-        // SDL_FreeRW(rawIcon);
-        // rawIcon = nullptr;
-        SDL_FreeSurface(finalIcon);
-        finalIcon = nullptr;
 	}
 
 	// Sets a random seed using the current time.
 	srand(static_cast <unsigned int> (time(NULL)));
-
-	// Hides the cursor when over the game window.
-	// SDL_ShowCursor(SDL_DISABLE);
-	// if (SDL_ShowCursor(SDL_QUERY) != 0) Error::log("Could not hide the cursor!", Error::Type::SDL);
 
 	// After initialisation, the current system state is set to active.
 	state = State::ACTIVE;
@@ -83,10 +59,6 @@ void System::handle()
 		{
 			// ...check to see if the "Esc" key was pressed, if so then the system's state is set to inactive.
 			case(SDLK_ESCAPE) : state = State::INACTIVE; break;
-			// ...check to see if the "R" key was pressed, if so then the system's state is set to resetting.
-			// case(SDLK_r) : state = State::RESETTING; break;
-			// ...check to see if the "F1" key was pressed, if so then whether colliders should be rendered or not is toggled.
-			// case(SDLK_F1) : renderColliders = !renderColliders; break;
 			// ...check to see if the "M" key was pressed, if so then whether sound should be muted or not is toggled.
 			case(SDLK_m) : soundMuted = !soundMuted; break;
 		}
@@ -111,9 +83,33 @@ void System::stepEnd()
 	iterateFrame();
 }
 
-std::string System::getImageDirectory(){ return IMAGE_DIRECTORY; }
+std::string System::getImageDirectory()
+{
+	#ifdef PLATFORM_WIN32
+	#ifdef BUILD_DEBUG
+	return "../../assets/Images/";
+	#else
+	return "Resources/Images/";
+	#endif
+	#endif
+	#ifdef PLATFORM_WEB
+	return "assets/Images/";
+	#endif
+}
 
-std::string System::getSoundDirectory(){ return SOUND_DIRECTORY; }
+std::string System::getSoundDirectory()
+{
+	#ifdef PLATFORM_WIN32
+	#ifdef BUILD_DEBUG
+	return "../../assets/Sounds/";
+	#else
+	return "Resources/Sounds/";
+	#endif
+	#endif
+	#ifdef PLATFORM_WEB
+	return "assets/Sounds/";
+	#endif
+}
 
 int System::getWindowWidth(){ return WINDOW_WIDTH; }
 
@@ -153,7 +149,6 @@ void System::terminate()
 
 		// Finally, the main systems are terminated.
 		Mix_Quit();
-		IMG_Quit();
 		SDL_Quit();
 	}
 }

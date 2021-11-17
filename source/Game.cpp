@@ -1,5 +1,3 @@
-#include "Game.h"
-
 // The image background for the game.
 Image Game::background;
 // The image for the planet.

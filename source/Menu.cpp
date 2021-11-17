@@ -1,5 +1,3 @@
-#include "Menu.h"
-
 // The menu image.
 Image Menu::menu;
 // The highscores image.

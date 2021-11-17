@@ -1,8 +1,6 @@
 #ifndef INCLUDE_IMAGE
 #define INCLUDE_IMAGE
 
-#include "System.h"
-
 // A class for storing an image type, this is used for rendering images to the window.
 
 class Image
@@ -35,4 +33,4 @@ class Image
 		SDL_Texture* texture;
 };
 
-#endif
+#endif // INCLUDE_IMAGE

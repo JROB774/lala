@@ -1,10 +1,6 @@
 #ifndef INCLUDE_SYSTEM
 #define INCLUDE_SYSTEM
 
-#include <ctime>
-#include "Error.h"
-#include "Timer.h"
-
 // The class that stores all the main system information and handles system functions that
 // are to be used throughout the application.
 
@@ -50,8 +46,6 @@ class System
 		// The destructor is deleted.
 		~System() = delete;
 	private:
-		// The directories for the application's resources.
-		static const std::string IMAGE_DIRECTORY, SOUND_DIRECTORY;
 		// The title of the application window.
 		static const std::string WINDOW_TITLE;
 		// The dimensions of the application window.

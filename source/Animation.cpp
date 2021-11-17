@@ -1,5 +1,3 @@
-#include "Animation.h"
-
 Animation::Animation()
 {
 	// Sets default values for everything.

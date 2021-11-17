@@ -1,8 +1,6 @@
 #ifndef INCLUDE_SOUND
 #define INCLUDE_SOUND
 
-#include "System.h"
-
 // A class for storing a sound type, this is used to play sounds.
 
 class Sound
@@ -23,4 +21,4 @@ class Sound
 		Mix_Chunk* chunk;
 };
 
-#endif
+#endif // INCLUDE_SOUND

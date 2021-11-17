@@ -1,9 +1,6 @@
 #ifndef INCLUDE_CLOUD
 #define INCLUDE_CLOUD
 
-#include "Image.h"
-#include "Animation.h"
-
 // A background entity that moves from right to left for visual effect.
 
 class Cloud

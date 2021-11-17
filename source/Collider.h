@@ -1,8 +1,6 @@
 #ifndef INCLUDE_COLLIDER
 #define INCLUDE_COLLIDER
 
-#include "System.h"
-
 // A collider objects, stores and manipulates the position and dimensions of a collison box.
 
 class Collider

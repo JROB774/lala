@@ -1,5 +1,3 @@
-#include "Collider.h"
-
 bool Collider::checkCollision(const SDL_Rect arg_first, const SDL_Rect arg_second)
 {
 	// Checks to see if the rects are overlapping, if not then the function returns false.
