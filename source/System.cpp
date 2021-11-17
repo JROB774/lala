@@ -27,7 +27,7 @@ void System::initialise()
     if (state != State::RESETTING)
     {
         // ...if it is not then the main systems are initialised.
-        if (SDL_Init(SDL_INIT_EVERYTHING) != 0) Error::log("Could not initialise SDL!", Error::Type::SDL);
+        if (SDL_Init(SDL_INIT_VIDEO) != 0) Error::log("Could not initialise SDL!", Error::Type::SDL);
         if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0) Error::log("Could not initialise MIX!", Error::Type::MIX);
 
         // Creates the application window.
