@@ -6,24 +6,24 @@
 
 class Timer
 {
-	public:
-		// The constructor.
-		Timer();
-		// Starts the timer.
-		void start();
-		// Pauses or unpauses the timer based on its current state.
-		void pause();
-		// Stops the timer and resets its stored time value.
-		void stop();
-		// Returns the number of ticks the timer has been running for.
-		Uint32 getTicks() const;
-		// The default destructor.
-		~Timer() = default;
-	private:
-		// The state values of the timer.
-		bool started, paused;
-		// The tick storage for the timer.
-		Uint32 startTicks, pauseTicks;
+    public:
+        // The constructor.
+        Timer();
+        // Starts the timer.
+        void start();
+        // Pauses or unpauses the timer based on its current state.
+        void pause();
+        // Stops the timer and resets its stored time value.
+        void stop();
+        // Returns the number of ticks the timer has been running for.
+        Uint32 getTicks() const;
+        // The default destructor.
+        ~Timer() = default;
+    private:
+        // The state values of the timer.
+        bool started, paused;
+        // The tick storage for the timer.
+        Uint32 startTicks, pauseTicks;
 };
 
 #endif // INCLUDE_TIMER

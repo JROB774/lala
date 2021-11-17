@@ -5,20 +5,20 @@
 
 class Sound
 {
-	public:
-		// The constructor.
-		Sound();
-		// Creates a sound from a specified file.
-		void create(const std::string);
-		// Plays the sound a specified number of times.
-		void play(const unsigned int) const;
-		// Destroys the sound and does clean up.
-		void destroy();
-		// The destructor.
-		~Sound();
-	private:
-		// The raw MIX chunk.
-		Mix_Chunk* chunk;
+    public:
+        // The constructor.
+        Sound();
+        // Creates a sound from a specified file.
+        void create(const std::string);
+        // Plays the sound a specified number of times.
+        void play(const unsigned int) const;
+        // Destroys the sound and does clean up.
+        void destroy();
+        // The destructor.
+        ~Sound();
+    private:
+        // The raw MIX chunk.
+        Mix_Chunk* chunk;
 };
 
 #endif // INCLUDE_SOUND
