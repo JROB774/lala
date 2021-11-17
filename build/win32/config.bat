@@ -34,7 +34,7 @@ set OutputName=LaLa
 
 set OutputExecutable=%OutputPath%%OutputName%
 
-set Version=1.1.0
+set Version=1.0.0
 
 if "%BuildMode%"=="" goto end
 
