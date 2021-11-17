@@ -31,10 +31,6 @@ class System
         static SDL_Renderer* getRenderer();
         // Returns the application event handler.
         static SDL_Event* getEvent();
-        // Returns the FPS timer.
-        static Timer* getFpsTimer();
-        // Returns the cap timer.
-        static Timer* getCapTimer();
         // Returns whether colliders should be rendered or not.
         static bool getRenderColliders();
         // Returns whether the sound is muted or not.
@@ -56,8 +52,6 @@ class System
         static SDL_Renderer* renderer;
         // The application's event handler.
         static SDL_Event event;
-        // The timers used for FPS related calculations.
-        static Timer fpsTimer, capTimer;
         // The FPS cap for the application and the number of ticks per frame.
         static const int FPS, TPF;
         // The counter for frames during the application's life.
@@ -70,8 +64,6 @@ class System
         static bool soundMuted;
         // The application's current state.
         static State state;
-        // Calculates the current average FPS for the application.
-        static void calculateAverageFps();
         // Moves on to the next frame/step in the application's life.
         static void iterateFrame();
 };

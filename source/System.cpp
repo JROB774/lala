@@ -8,8 +8,6 @@ SDL_Window* System::window = nullptr;
 SDL_Renderer* System::renderer = nullptr;
 // The application's event handler.
 SDL_Event System::event;
-// The timers used for FPS related calculations.
-Timer System::fpsTimer, System::capTimer;
 // The FPS cap for the application and the number of ticks per frame.
 const int System::FPS = 60, System::TPF = 1000 / FPS;
 // The counter for frames during the application's life.
@@ -67,8 +65,6 @@ void System::handle()
 
 void System::stepBegin()
 {
-    // Calculates the current average FPS the system is running at.
-    calculateAverageFps();
     // Sets the renderer's draw colour.
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     // Renders the draw colour across the entire application window.
@@ -119,10 +115,6 @@ SDL_Renderer* System::getRenderer(){ return renderer; }
 
 SDL_Event* System::getEvent(){ return &event; }
 
-Timer* System::getFpsTimer(){ return &fpsTimer; }
-
-Timer* System::getCapTimer(){ return &capTimer; }
-
 bool System::getRenderColliders(){ return renderColliders; }
 
 bool System::isSoundMuted(){ return soundMuted; }
@@ -132,7 +124,6 @@ System::State System::getState(){ return state; }
 void System::terminate()
 {
     // Resets everything used for FPS calculations.
-    fpsTimer.stop(), capTimer.stop();
     frameCounter = 0;
     averageFps = 0.0;
 
@@ -153,23 +144,8 @@ void System::terminate()
     }
 }
 
-void System::calculateAverageFps()
-{
-    // Uses an algorithm to determine the average FPS of the application.
-    averageFps = frameCounter / (fpsTimer.getTicks() / 1000.0);
-    if (averageFps > 2000000) averageFps = 0;
-}
-
 void System::iterateFrame()
 {
-    // Declares a variable to store the extra frame ticks.
-    int frameTicks = 0;
-
-    // Calculates how many ticks occured during the frame and what the remainder is.
-    frameTicks = capTimer.getTicks();
-    // Waits out the reminaing ticks to complete the frame.
-    if (frameTicks < TPF) SDL_Delay(TPF - frameTicks);
-
     // Moves on to the next frame.
     frameCounter++;
 }
