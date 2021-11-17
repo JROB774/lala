@@ -1,5 +1,7 @@
 void Error::log(const std::string arg_message, const Type arg_type)
 {
+    #ifndef PLATFORM_WEB
+
     // Creates a file stream for appending data.
     std::ofstream file("Error.log", std::ios::app);
 
@@ -20,4 +22,6 @@ void Error::log(const std::string arg_message, const Type arg_type)
 
     // Exits the program with a state of failure.
     exit(EXIT_FAILURE);
+
+    #endif
 }
